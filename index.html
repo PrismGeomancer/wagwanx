@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#12110d">
+    <title>WAGWAN — Mandem Meta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Permanent+Marker&display=swap');
+
+        :root {
+            --ink: #12110d;
+            --paper: #e9e2cb;
+            --yellow: #f7c900;
+            --red: #eb3f2f;
+            --grey: #878277;
+            --line: rgba(233, 226, 203, .27);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            min-width: 320px;
+            color: var(--paper);
+            background: var(--ink);
+            font: 15px/1.55 Arial, Helvetica, sans-serif;
+            overflow-x: hidden
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: .17;
+            pointer-events: none;
+            background-image: radial-gradient(#fff 0.65px, transparent .7px), radial-gradient(#fff .65px, transparent .7px);
+            background-position: 0 0, 4px 4px;
+            background-size: 8px 8px;
+            mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent)
+        }
+
+        a {
+            color: inherit
+        }
+
+        .wrap {
+            width: min(1200px, 92vw);
+            margin: auto
+        }
+
+        nav {
+            min-height: 74px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--line);
+            font: 11px 'DM Mono', monospace;
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        .stamp {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+            font-family: 'Anton', Impact, sans-serif;
+            font-size: 20px;
+            letter-spacing: .07em
+        }
+
+        .stamp::before {
+            content: 'W';
+            display: grid;
+            place-items: center;
+            width: 27px;
+            height: 27px;
+            color: var(--ink);
+            background: var(--yellow);
+            font-size: 17px;
+            transform: rotate(-7deg)
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            color: var(--grey)
+        }
+
+        .nav-links a {
+            text-decoration: none
+        }
+
+        .nav-links a:hover {
+            color: var(--yellow)
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.06fr .94fr;
+            min-height: 650px;
+            align-items: center;
+            gap: 5vw;
+            padding: 62px 0 75px
+        }
+
+        .kicker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--yellow);
+            font: 11px 'DM Mono', monospace;
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        .kicker::before {
+            content: '';
+            width: 33px;
+            height: 2px;
+            background: var(--yellow)
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0
+        }
+
+        h1 {
+            margin: 16px 0 17px;
+            font: clamp(76px, 13vw, 166px)/.78 'Anton', Impact, sans-serif;
+            letter-spacing: -.04em;
+            text-transform: uppercase
+        }
+
+        h1 span {
+            color: var(--yellow);
+            display: block;
+            margin-left: .45em;
+            text-shadow: 4px 4px 0 var(--red)
+        }
+
+        .hero-copy {
+            width: min(490px, 100%);
+            color: #c2bcac;
+            font-size: 18px;
+            line-height: 1.5
+        }
+
+        .hero-copy b {
+            color: var(--paper)
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 29px
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 18px;
+            color: var(--ink);
+            background: var(--yellow);
+            border: 2px solid var(--yellow);
+            text-decoration: none;
+            font: 500 11px 'DM Mono', monospace;
+            letter-spacing: .08em
+        }
+
+        .button:hover {
+            background: transparent;
+            color: var(--yellow)
+        }
+
+        .button.alt {
+            background: transparent;
+            color: var(--paper);
+            border-color: var(--paper)
+        }
+
+        .button.alt:hover {
+            color: var(--ink);
+            background: var(--paper)
+        }
+
+        .coin-wrap {
+            position: relative;
+            justify-self: center;
+            width: min(430px, 83vw);
+            aspect-ratio: 1;
+            isolation: isolate
+        }
+
+        .coin-wrap::before {
+            content: 'TIMELINE CERTIFIED';
+            position: absolute;
+            top: 0;
+            left: -26px;
+            z-index: 2;
+            padding: 7px 10px;
+            color: var(--ink);
+            background: var(--yellow);
+            transform: rotate(-7deg);
+            font: 500 10px 'DM Mono', monospace;
+            letter-spacing: .1em
+        }
+
+        .coin-wrap::after {
+            content: 'NO SUITS. NO ROADMAP. JUST WAGWAN.';
+            position: absolute;
+            right: -11px;
+            bottom: 18px;
+            z-index: 2;
+            width: 145px;
+            color: var(--paper);
+            background: var(--red);
+            padding: 9px;
+            font: 14px/1.1 'Permanent Marker', cursive;
+            transform: rotate(5deg)
+        }
+
+        .coin {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: polygon(5% 0, 100% 7%, 93% 94%, 0 100%);
+            filter: contrast(1.13) saturate(.88)
+        }
+
+        .ticker {
+            border-block: 2px solid var(--yellow);
+            background: var(--yellow);
+            color: var(--ink);
+            white-space: nowrap;
+            overflow: hidden;
+            font: 18px 'Anton', Impact, sans-serif;
+            letter-spacing: .075em;
+            text-transform: uppercase
+        }
+
+        .ticker span {
+            display: inline-block;
+            padding: 8px 0;
+            animation: move 24s linear infinite
+        }
+
+        @keyframes move {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .section {
+            padding: 103px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .label {
+            color: var(--yellow);
+            font: 11px 'DM Mono', monospace;
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1.45fr;
+            gap: 8vw
+        }
+
+        .section h2 {
+            margin: 11px 0 0;
+            font: clamp(46px, 6vw, 78px)/.86 'Anton', Impact, sans-serif;
+            letter-spacing: -.025em;
+            text-transform: uppercase
+        }
+
+        .story {
+            padding-top: 8px;
+            font-size: 18px;
+            color: #c6beae
+        }
+
+        .story p {
+            margin-bottom: 20px
+        }
+
+        .story strong {
+            color: var(--yellow)
+        }
+
+        .notes {
+            margin-top: 65px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--line);
+            border-left: 1px solid var(--line)
+        }
+
+        .note {
+            min-height: 220px;
+            padding: 24px;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            position: relative
+        }
+
+        .note .n {
+            color: var(--red);
+            font: 12px 'DM Mono', monospace
+        }
+
+        .note h3 {
+            margin: 33px 0 10px;
+            font: 27px/.95 'Anton', Impact, sans-serif;
+            letter-spacing: .02em;
+            text-transform: uppercase
+        }
+
+        .note p {
+            color: var(--grey);
+            font-size: 14px
+        }
+
+        .manifesto {
+            position: relative;
+            padding: 70px 0 76px;
+            text-align: center
+        }
+
+        .manifesto::before,
+        .manifesto::after {
+            content: '★';
+            position: absolute;
+            top: 66px;
+            color: var(--yellow);
+            font-size: 25px
+        }
+
+        .manifesto::before {
+            left: 2%
+        }
+
+        .manifesto::after {
+            right: 2%
+        }
+
+        .manifesto q {
+            display: block;
+            max-width: 1000px;
+            margin: auto;
+            font: clamp(39px, 6vw, 86px)/.95 'Anton', Impact, sans-serif;
+            letter-spacing: -.025em;
+            text-transform: uppercase;
+            text-decoration: underline;
+            text-decoration-color: var(--red);
+            text-decoration-thickness: 6px;
+            text-underline-offset: 8px
+        }
+
+        .manifesto q::before,
+        .manifesto q::after {
+            content: ''
+        }
+
+        .risk {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 35px;
+            margin-bottom: 90px;
+            padding: 27px 31px;
+            color: #c8bfac;
+            background: #242119;
+            border-left: 6px solid var(--red)
+        }
+
+        .risk p {
+            margin: 7px 0 0;
+            font-size: 14px
+        }
+
+        .risk b {
+            color: var(--paper)
+        }
+
+        .risk .small {
+            color: var(--red);
+            font: 11px 'DM Mono', monospace;
+            letter-spacing: .1em;
+            white-space: nowrap
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 27px 0 40px;
+            color: var(--grey);
+            font: 10px 'DM Mono', monospace;
+            letter-spacing: .07em;
+            text-transform: uppercase
+        }
+
+        @media(max-width:760px) {
+            nav {
+                min-height: 64px
+            }
+
+            .nav-links a:not(:last-child) {
+                display: none
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding: 67px 0 84px;
+                gap: 55px
+            }
+
+            .coin-wrap {
+                order: -1;
+                justify-self: start;
+                width: min(330px, 82vw);
+                margin-left: 7px
+            }
+
+            h1 {
+                font-size: clamp(76px, 22vw, 128px)
+            }
+
+            .split {
+                grid-template-columns: 1fr;
+                gap: 30px
+            }
+
+            .section {
+                padding: 77px 0
+            }
+
+            .notes {
+                grid-template-columns: 1fr
+            }
+
+            .note {
+                min-height: auto
+            }
+
+            .manifesto {
+                padding: 73px 0
+            }
+
+            .manifesto::before,
+            .manifesto::after {
+                display: none
+            }
+
+            .risk {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-bottom: 68px
+            }
+
+            .risk .small {
+                white-space: normal
+            }
+
+            footer {
+                display: block
+            }
+
+            footer span+span {
+                display: block;
+                margin-top: 9px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <nav><a class="stamp" href="#top">WAGWAN</a>
+            <div class="nav-links"><a href="#story">The Word</a><a href="#notes">Street Notes</a><a href="#"
+                    aria-label="Twitter link coming soon">Twitter ↗</a></div>
+        </nav>
+        <main id="top">
+            <section class="hero">
+                <div>
+                    <div class="kicker">Culture coin / Est. on the timeline</div>
+                    <h1>WAG<span>WAN.</span></h1>
+                    <p class="hero-copy">For the <b>mandem on the timeline.</b> Markets move mad, group chats get loud,
+                        and one meme changes the whole temperature. No suit talk. Just culture, chaos, and community.
+                    </p>
+                    <div class="button-row"><a class="button" href="#" aria-label="Buy link coming soon">BUY WAG ↗</a><a
+                            class="button alt" href="#" aria-label="Twitter link coming soon">JOIN THE CHAT ↗</a></div>
+                </div>
+                <div class="coin-wrap"><img class="coin" src="logo.jpg" alt="Wagwan coin character"></div>
+            </section>
+        </main>
+    </div>
+    <div class="ticker"><span>WAGWAN — WHAT'S GOOD? — VIBES &amp; VOLATILITY — MANDEM META — WAGWAN — WHAT'S GOOD? —
+            VIBES &amp; VOLATILITY — MANDEM META — </span></div>
+    <div class="wrap">
+        <section class="section" id="story">
+            <div class="split">
+                <div>
+                    <div class="label">01 / The word</div>
+                    <h2>World's moving mad.</h2>
+                </div>
+                <div class="story">
+                    <p>Headlines pop off every hour. One minute green candles; the next, pure chaos. Sentiment flips
+                        faster than a group-chat opinion and everyone has suddenly become an expert.</p>
+                    <p><strong>Wagwan ain't pretending to fix the system.</strong> It's here for the culture: the chat,
+                        the memes, the momentum, and the people who know that sometimes the only response to the chart
+                        is “wagwan?”</p>
+                    <p>Not corporate. Not polished. Community first, charts second.</p>
+                </div>
+            </div>
+            <div class="notes" id="notes">
+                <article class="note"><span class="n">01 / TIMELINE ENERGY</span>
+                    <h3>One tweet can send it.</h3>
+                    <p>One headline can sink it. Mandem stay alert and never underestimate a late-night post.</p>
+                </article>
+                <article class="note"><span class="n">02 / MARKET MANNERS</span>
+                    <h3>Don't get spun.</h3>
+                    <p>Everyone's a trader until it dips. Hype in, vibes out—stay sharp when the noise gets loud.</p>
+                </article>
+                <article class="note"><span class="n">03 / CULTURE CHECK</span>
+                    <h3>If you know.</h3>
+                    <p>There is no corporate pitch. Just energy, memes, movement, and the people keeping the chat alive.
+                    </p>
+                </article>
+            </div>
+        </section>
+        <section class="manifesto">
+            <div class="label">The whole summary</div><q>Chat loud. Stay sharp. Wagwan.</q>
+        </section>
+        <div class="risk">
+            <div>
+                <div class="label">Important, though</div>
+                <p><b>Wagwan Coin is a meme token for entertainment only.</b> Crypto is volatile and speculative. Do
+                    your own research before making any decision.</p>
+            </div>
+            <div class="small">Not financial advice.</div>
+        </div>
+        <footer><span>© 2026 WAGWAN COIN</span><span>Culture first. Charts second.</span></footer>
+    </div>
+</body>
+
+</html>
